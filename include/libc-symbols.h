@@ -539,6 +539,11 @@ for linking")
   __hidden_proto (name, , __GI_##name, ##attrs)
 #  define hidden_proto2(type, name, attrs...) \
   __hidden_proto2 (type, name, , __GI_##name, ##attrs)
+#  define __hidden_proto_alias(internal) \
+    __asm__(__hidden_asmname (#internal))
+#  define hidden_proto3(name, proto, attrs...) \
+  name proto __hidden_proto_alias (__GI_##name) \
+   __hidden_proto_hiddenattr (##attrs)
 #  define hidden_tls_proto(name, attrs...) \
   __hidden_proto (name, __thread, __GI_##name, ##attrs)
 #  define __hidden_proto(name, thread, internal, attrs...)	     \
@@ -610,8 +615,11 @@ for linking")
   __hidden_proto (name, __thread, name, ##attrs)
 #  define __hidden_proto(name, thread, internal, attrs...)	     \
   extern thread __typeof (name) name __hidden_proto_hiddenattr (attrs);
+#  define hidden_proto3(name, proto, attrs...) \
+     name proto __hidden_proto_hiddenattr (##attrs)
 # else
 #   define hidden_proto(name, attrs...)
+#   define hidden_proto3(name, proto, attrs...) name proto
 #   define hidden_tls_proto(name, attrs...)
 # endif
 # define __hidden_proto2(type, name, thread, attrs...)     \
