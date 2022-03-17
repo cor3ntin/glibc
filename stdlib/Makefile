@@ -36,6 +36,7 @@ routines	:=							      \
 	abort								      \
 	bsearch qsort msort						      \
 	getenv putenv setenv secure-getenv				      \
+  _Get_argc _Get_argv \
 	exit on_exit atexit cxa_atexit cxa_finalize old_atexit		      \
 	quick_exit at_quick_exit cxa_at_quick_exit cxa_thread_atexit_impl     \
 	abs labs llabs							      \

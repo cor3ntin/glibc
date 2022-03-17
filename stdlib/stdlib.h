@@ -637,6 +637,10 @@ extern void _Exit (int __status) __THROW __attribute__ ((__noreturn__));
 #endif
 
 
+extern int _Get_argc(void) __wur;
+extern const char* const * _Get_argv(void) __wur;
+
+
 /* Return the value of envariable NAME, or NULL if it doesn't exist.  */
 extern char *getenv (const char *__name) __THROW __nonnull ((1)) __wur;
 
